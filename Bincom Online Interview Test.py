@@ -21,24 +21,24 @@ for day in data.values():
 # Count occurrences
 color_counts = Counter(colors)
 
-# Mean color (not mathematically accurate because you can only calculate mean of numeric data, choosing color with mean frequency index)
+# Question 1:  Mean color (not mathematically accurate because you can only calculate mean of numeric data, choosing color with mean frequency index)
 avg_freq = mean(color_counts.values())
 mean_color = min(color_counts, key=lambda k: abs(color_counts[k] - avg_freq))
 
-# Get most worn color
+# Question 2: Get most worn color
 most_worn_color = color_counts.most_common(1)[0][0]
 
-# Median color 
+# Question 3: Median color 
 sorted_colors = sorted(color_counts.items(), key=lambda x: x[1])
 median_color = median([v for k, v in sorted_colors])
 
-# Variance (I love bonus questions)
+#Question 4: Variance (I love bonus questions)
 color_variance = variance(color_counts.values())
 
-# Probability of Red (Thankss)
+# Question 5: Probability of Red (Thankss)
 prob_red = color_counts["RED"] / sum(color_counts.values())
 
-# Store in PostgreSQL
+# Question 6: Store in PostgreSQL
 def save_to_db():
     conn = psycopg2.connect("dbname=staffcolor user=Admin password=1234 host=localhost")
     cur = conn.cursor()
@@ -53,7 +53,7 @@ def save_to_db():
     conn.commit()
     conn.close()
 
-#Recursive Function
+# Question 7: Recursive Function
 
 def recursive_search(arr, target, low=0, high=None):
     if high is None:
@@ -74,11 +74,11 @@ target_num = random.choice(num_list)
 search_result = recursive_search(num_list, target_num)
 print("Recursive Search - Target:", target_num, "Found at Index:", search_result)
 
-# Generate 4-digit binary number and convert to base 10
+# Question 8: Generate 4-digit binary number and convert to base 10
 binary_num = "".join(random.choices("01", k=4))
 base10_num = int(binary_num, 2)
 
-# Fibonacci sum
+# Question 9: Fibonacci sum
 fib = [0, 1]
 for _ in range(48):
     fib.append(fib[-1] + fib[-2])
